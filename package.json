@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "A CLI tool that scaffolds API documentation based on JSON HyperSchemas.",
   "main": "index.js",
+  "bin": {
+    "doca": "./index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
