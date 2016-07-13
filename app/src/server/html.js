@@ -1,0 +1,12 @@
+import React from 'react';
+import { Head } from 'doca-cf-theme';
+import config from '../../config';
+
+export default () =>
+  <html>
+    <Head title={config.title} />
+    <body>
+      <div id="app-root" />
+      <script src="//localhost:8080/build/app.js" type="text/javascript" />
+    </body>
+  </html>;
