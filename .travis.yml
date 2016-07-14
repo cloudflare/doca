@@ -3,4 +3,6 @@ node_js:
   - 'stable'
   - '4'
   - '0.12'
-script: 'npm test'
+script:
+  - 'npm test'
+  - 'npm run lint'
