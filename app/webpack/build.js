@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
 import Main from '../src/client/main';
 import store from '../src/client/store';
-import { Head } from 'doca-cf-theme';
+import { Head } from 'doca-bootstrap-theme';
 import config from '../config';
 
 const Page = ({ hash, skipJS, skipCSS }) =>
