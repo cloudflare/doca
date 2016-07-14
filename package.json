@@ -38,6 +38,10 @@
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.10.2",
     "eslint-plugin-jsx-a11y": "^2.0.1",
-    "eslint-plugin-react": "^5.2.2"
+    "eslint-plugin-react": "^5.2.2",
+    "glob": "^7.0.5",
+    "mkdirp": "^0.5.1",
+    "ncp": "^2.0.0",
+    "replace": "^0.3.0"
   }
 }
