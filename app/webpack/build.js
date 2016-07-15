@@ -6,13 +6,11 @@ import store from '../src/client/store';
 import { Head } from 'doca-bootstrap-theme';
 import config from '../config';
 
-const Page = ({ hash, skipJS, skipCSS }) =>
+const Page = ({ body, hash, skipJS, skipCSS }) =>
   <html>
     <Head title={config.title} cssBundle={skipCSS ? '' : `app-${hash}.css`} />
     <body>
-      <div id="app-root">
-        <Provider store={store}><Main /></Provider>
-      </div>
+      <div id="app-root" dangerouslySetInnerHTML={{ __html: body }} />
       {!skipJS && <script src={`app-${hash}.js`} type="text/javascript" />}
     </body>
   </html>;
@@ -20,6 +18,7 @@ const Page = ({ hash, skipJS, skipCSS }) =>
 
 Page.propTypes = {
   hash: PropTypes.string,
+  body: PropTypes.string,
   skipJS: PropTypes.bool,
   skipCSS: PropTypes.bool,
 };
@@ -27,8 +26,13 @@ Page.propTypes = {
 export default (locals, callback) => {
   const skipCSS = !Object.keys(locals.webpackStats.compilation.assets)
     .some(val => val === `app-${locals.webpackStats.hash}.css`);
+  const body = ReactDOMServer.renderToString(<Main />);
   callback(null, `<!DOCTYPE html>${ReactDOMServer.renderToStaticMarkup(
-    <Page hash={locals.webpackStats.hash} skipJS={locals.skipJS} skipCSS={skipCSS}/>
+    <Page
+      body={body}
+      hash={locals.webpackStats.hash}
+      skipJS={locals.skipJS}
+      skipCSS={skipCSS}
+    />
   )}`);
 };
-
