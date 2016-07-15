@@ -26,7 +26,7 @@ Page.propTypes = {
 export default (locals, callback) => {
   const skipCSS = !Object.keys(locals.webpackStats.compilation.assets)
     .some(val => val === `app-${locals.webpackStats.hash}.css`);
-  const body = ReactDOMServer.renderToString(<Main />);
+  const body = ReactDOMServer.renderToString(<Provider store={store}><Main /></Provider>);
   callback(null, `<!DOCTYPE html>${ReactDOMServer.renderToStaticMarkup(
     <Page
       body={body}
