@@ -1,7 +1,7 @@
 {
-  "name": "API documentation",
+  "name": "example-api-documentation",
   "version": "0.0.1",
-  "description": "API documentation",
+  "description": "Example API documentation",
   "license": "None",
   "private": true,
   "engines": {

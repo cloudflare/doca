@@ -1,0 +1,105 @@
+{
+  "id": "/cart-item",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Cart Item",
+  "description": "Items in a user's cart",
+  "type": "object",
+  "definitions": {
+    "identifier": {
+      "type": "integer",
+      "description": "The identifier of where the item is in the cart",
+      "example": 1
+    },
+    "quantity": {
+      "type": "number",
+      "description": "The amount of product that is desired",
+      "example": 2
+    }
+  },
+  "properties": {
+    "ID": {
+      "$ref": "#/definitions/identifier"
+    },
+    "product": {
+      "$ref": "./product.json"
+    },
+    "quantity": {
+      "$ref": "#/definitions/quantity"
+    }
+  },
+  "links": [
+    {
+      "title": "Add product to cart",
+      "description": "Add a product to your cart",
+      "rel": "self",
+      "href": "/cart/{#/definitions/identifier}",
+      "method": "POST",
+      "authentication_needed": true,
+      "required": ["product", "quantity"],
+      "schema": {
+        "type": "object",
+        "properties": {
+          "product": {
+            "$ref": "./product.json"
+          },
+          "quantity": {
+            "$ref": "#/definitions/quantity"
+          }
+        }
+      },
+      "targetSchema": {"rel": "self"}
+    },
+    {
+      "title": "All items in cart",
+      "description": "All items a user has added to their cart",
+      "rel": "instances",
+      "href": "/cart",
+      "method": "GET",
+      "authentication_needed": true,
+      "targetSchema": {
+        "type": "array",
+        "items": {"rel": "self"}
+      }
+    },
+    {
+      "title": "Cart item info",
+      "description": "Info about a specific item in the cart",
+      "rel": "self",
+      "href": "/cart/{#/definitions/identifier}",
+      "method": "GET",
+      "authentication_needed": "yes",
+      "targetSchema": {"rel": "self"}
+    },
+    {
+      "title": "Update an item",
+      "description": "Update information about the item in your cart",
+      "rel": "self",
+      "href": "/cart/{#/definitions/identifier}",
+      "method": "PUT",
+      "authentication_needed": true,
+      "required": ["quantity"],
+      "schema": {
+        "type": "object",
+        "properties": {
+          "quantity": {
+            "$ref": "#/definitions/quantity"
+          }
+        }
+      },
+      "targetSchema": {"rel": "self"}
+    },
+    {
+      "title": "Remove a cart item",
+      "description": "Remove an item from your cart",
+      "rel": "self",
+      "href": "/cart/{#/definitions/identifier}",
+      "method": "DELETE",
+      "targetSchema": {
+        "type": "object",
+        "properties": {
+          "ID": {"$ref": "#/definitions/identifier"}
+        }
+      }
+    }
+  ]
+}
