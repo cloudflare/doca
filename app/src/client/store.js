@@ -1,4 +1,5 @@
 /* eslint global-require: 0 */
+/* eslint no-console: 0 */
 
 import { createStore } from 'redux';
 import docs from './reducers/index';
@@ -19,9 +20,14 @@ export default store;
 
 if (module.hot) {
   module.hot.accept('../../schemas', () => {
-    store.dispatch({
-      type: ACTIONS.REINIT_SCHEMAS,
-      payload: require('../../schemas').default,
-    });
+    try {
+      const data = require('../../schemas').default;
+      store.dispatch({
+        type: ACTIONS.REINIT_SCHEMAS,
+        payload: data,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   });
 }
