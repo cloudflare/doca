@@ -1,6 +1,6 @@
 {
   "name": "doca",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A CLI tool that scaffolds API documentation based on JSON HyperSchemas.",
   "main": "index.js",
   "bin": {
