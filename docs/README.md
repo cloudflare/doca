@@ -2,7 +2,7 @@
 
 CloudFlare exposes the entire infrastructure via a RESTful API. In order to keep track of all our endpoints we use a rich notation called [JSON Hyper-Schema](http://json-schema.org/). These schemas are (not only) used to generate a complete HTML documentation that you can see at [https://api.cloudflare.com](https://api.cloudflare.com). Today, we want to share a set of tools that we use in this process.
 
-## Understanding JSON Schema
+## JSON Schema
 
 JSON Schema is a powerful way how to describe your JSON data format. **It provides a complete structural validation** and can be used for things like validation of incoming requests. JSON Hyper-Schema further extends this format by links and gives you a way to describe your API.
 
@@ -48,7 +48,7 @@ JSON Schema is a powerful way how to describe your JSON data format. **It provid
 
 ## Generating Documentation: Tools
 
-We have already open source a library that can generate a complete HTML documentation based on JSON Schema files and [Handlerbars.js](http://handlebarsjs.com/) templates. It is called [Json Schema Docs Generator (JSDC)](https://github.com/cloudflare/json-schema-docs-generator). However, it has some drawbacks making hard to use it by other teams:
+We have already open source a library that can generate a complete HTML documentation based on JSON Schema files and [Handlebars.js](http://handlebarsjs.com/) templates. It is called [Json Schema Docs Generator (JSDC)](https://github.com/cloudflare/json-schema-docs-generator). However, it has some drawbacks making it hard to use it by other teams:
 
 - Complicated configuration
 - It is necessary to rebuild everything with every change (slow)
@@ -60,11 +60,11 @@ We wanted something more modular and extensible that addresses issues above but 
 
 ### [json-schema-loader](https://github.com/cloudflare/json-schema-loader)
 
-JSON Schema files need to be preprocessed first. **The first thing we have to do is to resolve their references ($ref).** This can be quite a complex task since every schema can have multiple references and these can be external (referencing even more schemas). Also, when we make a change, we want to only resolve schemas that need to be resolved. We have decided to use [Webpack](https://webpack.github.io/) for this task. Webpack loaders have some great properties:
+JSON Schema files need to be preprocessed first. **The first thing we have to do is to resolve their references ($ref).** This can be quite a complex task since every schema can have multiple references and these can be external (referencing even more schemas). Also, when we make a change, we want to only resolve schemas that need to be resolved. We have decided to use [Webpack](https://webpack.github.io/) for this task because webpack loaders have some great properties:
 
 - It is a simple function that transforms input into output
 - It can **maintain and track additional file dependencies**
-- It can cache the ouput
+- It can cache the output
 - It can be chained
 - Webpack watches all changes in required modules and their dependencies
 
@@ -78,32 +78,32 @@ but ids are simply ignored and the scope is always relative to the root. That ma
 
 ### [json-schema-example-loader](https://github.com/cloudflare/json-schema-example-loader)
 
-Finally, we have resolved schemas. Unfortunately, their structure don't really match our final HTML documentation. It can be still deeply nested and we want to present our users nice examples of API requests and responses. We need to do further transformations. We remove some original properties and precompute some new ones. **The goal is to create a data structure that will better fit our UI components.** Please, check [the project page](https://github.com/cloudflare/json-schema-example-loader) for more details.
+Finally, we have resolved schemas. Unfortunately, their structure doesn't really match our final HTML documentation. It can be still deeply nested and we want to present our users nice examples of API requests and responses. We need to do further transformations. We remove some original properties and precompute some new ones. **The goal is to create a data structure that will better fit our UI components.** Please, check [the project page](https://github.com/cloudflare/json-schema-example-loader) for more details.
 
-You might be asking why we use an another webpack loader. This could be part of our web application instead. The main reason is performance. We do not want to bog down browsers by doing these transformations repeatedly since JSON Schemas can be arbitrarily nested and very complex.
+You might be asking why we use an another webpack loader. This could be a part of our web application instead. The main reason is performance. We do not want to bog down browsers by doing these transformations repeatedly since JSON Schemas can be arbitrarily nested and very complex.
 
 ### [doca-bootstrap-theme](https://github.com/cloudflare/doca-bootstrap-theme)
 
-With both Webpack loaders, you can use your favorite JavaScript framework and easily build your own application already. However, we want to make docs generation accessible even to people who don't have time to build their own application. Therefore, we have created a set of templates that matches the output of [json-schema-example-loader](https://github.com/cloudflare/json-schema-example-loader). These templates are using popular library [React](https://facebook.github.io/react/). Why React?
+With both Webpack loaders you can use your favorite JavaScript framework and easily build your own application already. However, we want to make docs generation accessible even to people who don't have time to build their own application. Therefore, we have created a set of templates that matches the output of [json-schema-example-loader](https://github.com/cloudflare/json-schema-example-loader). These templates are using popular library [React](https://facebook.github.io/react/). Why React?
 
 - It can be used and rendered server-side
 - We can now bake in additional features into components (show/hide...)
 - It is easily composable
 - We really really like it :)
 
-[doca-bootstrap-theme](https://github.com/cloudflare/doca-bootstrap-theme) is a generic theme based on [Twitter Bootstrap v3](http://getbootstrap.com/). We also have our private theme used by [https://api.cloudflare.com](https://api.cloudflare.com). You are encouraged to fork it and create your own awesome themes!
+[doca-bootstrap-theme](https://github.com/cloudflare/doca-bootstrap-theme) is a generic theme based on [Twitter Bootstrap v3](http://getbootstrap.com/). We also have our private doca-cf-theme used by [https://api.cloudflare.com](https://api.cloudflare.com). You are encouraged to fork it and create your own awesome themes!
 
 ### [doca](https://github.com/cloudflare/doca)
 
-So, we have loaders and nice UI components. **Now it is a time to put it all together.** We have something that can do just that! We call it **doca**. Doca is a command-line tool written in Node.js that scaffolds the whole application for you. It is actually pretty simple. It takes fine-tuned webpack/redux/babel based [application](https://github.com/cloudflare/doca/tree/master/app), copies it into a destination of your choice and does few simple replacements.
+So, we have loaders and nice UI components. **Now it is a time to put it all together.** We have something that can do just that! We call it **doca**. Doca is a command-line tool written in Node.js that scaffolds the whole application for you. It is actually pretty simple. It takes fine-tuned webpack/redux/babel based [application](https://github.com/cloudflare/doca/tree/master/app), copies it into a destination of your choice and does a few simple replacements.
 
 Since all hard work is done by webpack loaders and all UI components live in a different theme package, the final app can be pretty minimalistic and it's not intended to be updated by doca tool. **You should use doca only once.** Otherwise, it would just rewrite your application which is not desirable if you made some custom modifications. For example, you might want to add [React Router](https://github.com/reactjs/react-router) and create a multi-page documentation.
 
 It contains webpack configs for development and production modes. You can build a completely static version with no JavaScript. It transforms output of [json-schema-example-loader](https://github.com/cloudflare/json-schema-example-loader) into immutable data structure (using [Immutable.js](https://facebook.github.io/immutable-js/)). This brings some nice performance optimizations. This immutable structure is then passed to [doca-bootstrap-theme](https://github.com/cloudflare/doca-bootstrap-theme) (default option). That's it.
 
-This is a good compromise between easy-to-setup requirement and later customization. Do have a folder with JSON Schema files and want to quickly get `index.html`? Install doca and use a few commands. Do you need your own look? Fork and update [doca-bootstrap-theme](https://github.com/cloudflare/doca-bootstrap-theme). Do you need to create more pages, sections or use a different framework? Just modify the app that was scaffolded by doca.
+This is a good compromise between easy-to-setup requirement and later customization. Do you have a folder with JSON Schema files and want to quickly get `index.html`? Install doca and use a few commands. Do you need your own look? Fork and update [doca-bootstrap-theme](https://github.com/cloudflare/doca-bootstrap-theme). Do you need to create more pages, sections or use a different framework? Just modify the app that was scaffolded by doca.
 
-One of the coolest features of Webpack is [hot module replacement](https://webpack.github.io/docs/hot-module-replacement.html). Once you save a file, you can immediately see the result in your browser. No waiting, refreshing, scrolling or lost state. It is mostly used in a [combination with React](https://github.com/gaearon/react-hot-loader). However, **we can use it for JSON Schemas as well** and here is the demo:
+One of the coolest features of Webpack is [hot module replacement](https://webpack.github.io/docs/hot-module-replacement.html). Once you save a file, you can immediately see the result in your browser. No waiting, refreshing, scrolling or lost state. It is mostly used in a [combination with React](https://github.com/gaearon/react-hot-loader). However, **we use it for JSON Schemas as well** and here is the demo:
 
 ![JSON Schema Hot Reloading](pics/hot-reload.gif)
 
@@ -113,7 +113,7 @@ One of the coolest features of Webpack is [hot module replacement](https://webpa
 
 ## Generating Documentation: Usage
 
-The only prerequisite is to have Node.js v4+ in your system. Then you can install doca by:
+The only prerequisite is to have Node.js v4+ in your system. Then, you can install doca by:
 
 ```
 npm install doca -g
@@ -178,4 +178,4 @@ Do you want to change the generic page title or make CURL examples nicer? Edit t
 
 ## Conclusion
 
-We have open source a set of libraries that can help you develop and ship a rich RESTful API documentation. We are happy for any feedback and can't wait to see new themes created by open source community. Please, gives us a [star on GitHub]((https://github.com/cloudflare/doca)). Also, if this work interests you then you should come [join our team](https://careers.jobscore.com/careers/cloudflare/jobs/senior-front-end-engineer-cI9kn86-ir4z5yiGakhP3Q)!
+We have open source a set of libraries that can help you develop and ship a rich RESTful API documentation. We are happy for any feedback and can't wait to see new themes created by open source community. Please, gives us a [star on GitHub](https://github.com/cloudflare/doca). Also, if this work interests you then you should come [join our team](https://careers.jobscore.com/careers/cloudflare/jobs/senior-front-end-engineer-cI9kn86-ir4z5yiGakhP3Q)!
