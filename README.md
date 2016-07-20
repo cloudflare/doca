@@ -71,7 +71,7 @@ open build/index.html
 
 Do you need to **add more schemas** or change their order? Edit the file `/schema.js`.
 
-Do you want to change the generic page title or make CURL examples nicer? Edit the file `/settings.js`.
+Do you want to change the generic page title or make CURL examples nicer? Edit the file `/config.js`.
 
 ## Themes
 
