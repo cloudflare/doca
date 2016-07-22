@@ -8,7 +8,7 @@
 npm install doca -g
 ```
 
-You should use Node.js 4+ and Npm 3+.
+You need to use **Node.js 4+** and Npm 2+.
 
 ## Commands
 
