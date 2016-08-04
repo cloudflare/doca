@@ -1,6 +1,6 @@
 # doca
 
-**Doca is a command-line tool that scaffolds API documentation (doca project)** based on your [JSON HyperSchemas](http://json-schema.org/). The doca project is a full-fledged web app based on React and Webpack. Getting the final documentation is as easy as typing few commands or you can dive deeper and create your own completely different layout.
+**Doca is a command-line tool that scaffolds API documentation (doca project)** based on your [JSON HyperSchemas](http://json-schema.org/). The doca project is a full-fledged web app based on React and Webpack. Getting the final documentation is as easy as typing few commands or you can dive deeper and create your own completely different layout. **[Read the introductory blog post.](https://blog.cloudflare.com/cloudflares-json-powered-documentation-generator/)**
 
 ## Installation
 
