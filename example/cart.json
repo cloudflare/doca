@@ -57,8 +57,13 @@
       "method": "GET",
       "authentication_needed": true,
       "targetSchema": {
-        "type": "array",
-        "items": {"rel": "self"}
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {"rel": "self"}
+          }
+        }
       }
     },
     {

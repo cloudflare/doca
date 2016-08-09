@@ -105,8 +105,13 @@
         }
       },
       "targetSchema": {
-        "type": "array",
-        "items": {"rel": "self"}
+        "type": "object",
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {"rel": "self"}
+          }
+        }
       }
     },{
       "title": "Product info",
