@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
 });
 
 const Main = connect(
-  mapStateToProps
+  mapStateToProps,
 )(App);
 
 export default Main;

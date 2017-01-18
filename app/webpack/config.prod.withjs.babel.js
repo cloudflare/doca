@@ -1,6 +1,6 @@
 import StaticSiteGeneratorPlugin from 'static-site-generator-webpack-plugin';
-import config from './config.prod.babel.js';
 import webpack from 'webpack';
+import config from './config.prod.babel';
 
 config.plugins.unshift(
   new webpack.DefinePlugin({
