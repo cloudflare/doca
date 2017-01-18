@@ -2,11 +2,22 @@
   "parser"  : "babel-eslint",
   "extends" : ["airbnb"],
   "rules": {
-    "react/prefer-stateless-function": 0
+    "react/prefer-stateless-function": 0,
+    "import/prefer-default-export": 0,
+    "react/jsx-filename-extension": 0,
+    "comma-dangle": ["error", {
+      arrays: "always-multiline",
+      objects: "always-multiline",
+      imports: "always-multiline",
+      exports: "always-multiline",
+      functions: "ignore"
+    }]
   },
   "globals": {
     "IS_JAVASCRIPT": false,
     "LAST_MODIFIED": false,
-    "process.env": false
+    "process.env": false,
+    "document": true,
+    "window": true
   }
 }

@@ -1,13 +1,15 @@
+/* eslint react/no-danger: 0 */
+
 import React, { PropTypes } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
+import { Head } from 'doca-bootstrap-theme';
 import Main from '../src/client/main';
 import store from '../src/client/store';
-import { Head } from 'doca-bootstrap-theme';
 import config from '../config';
 
 const Page = ({ body, hash, skipJS, skipCSS }) =>
-  <html>
+  <html lang="en-US">
     <Head title={config.title} cssBundle={skipCSS ? '' : `app-${hash}.css`} />
     <body>
       <div id="app-root" dangerouslySetInnerHTML={{ __html: body }} />
@@ -17,10 +19,10 @@ const Page = ({ body, hash, skipJS, skipCSS }) =>
 
 
 Page.propTypes = {
-  hash: PropTypes.string,
-  body: PropTypes.string,
-  skipJS: PropTypes.bool,
-  skipCSS: PropTypes.bool,
+  hash: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  skipJS: PropTypes.bool.isRequired,
+  skipCSS: PropTypes.bool.isRequired,
 };
 
 export default (locals, callback) => {
