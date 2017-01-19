@@ -10,11 +10,12 @@
   },
   "scripts": {
     "clean": "rm -rf build",
+		"cleanwin": "rmdir /S /Q build",
     "start": "node webpack/index | NODE_ENV=development node src/server",
     "build": "npm run clean && NODE_ENV=production webpack --config webpack/config.prod.withjs.babel.js && rm build/static-*",
     "build:nojs": "npm run clean && NODE_ENV=production webpack --config webpack/config.prod.nojs.babel.js && rm build/static-* && rm build/app-*.js",
-    "buildwin": "npm run clean && set NODE_ENV=production && webpack --config webpack/config.prod.withjs.babel.js && rm build/static-*",
-    "buildwin:nojs": "npm run clean && set NODE_ENV=production && webpack --config webpack/config.prod.nojs.babel.js && rm build/static-* && rm build/app-*.js",
+    "buildwin": "npm run cleanwin && set NODE_ENV=production && webpack --config webpack/config.prod.withjs.babel.js && del build\\static-*",
+    "buildwin:nojs": "npm run cleanwin && set NODE_ENV=production && webpack --config webpack/config.prod.nojs.babel.js && del build\\static-* && del build\\app-*.js",
     "lint": "eslint src webpack || true"
   },
   "dependencies": {
