@@ -10,7 +10,7 @@
   },
   "scripts": {
     "clean": "rm -rf build",
-		"cleanwin": "rmdir /S /Q build",
+    "cleanwin": "rmdir /S /Q build",
     "start": "node webpack/index | NODE_ENV=development node src/server",
     "build": "npm run clean && NODE_ENV=production webpack --config webpack/config.prod.withjs.babel.js && rm build/static-*",
     "build:nojs": "npm run clean && NODE_ENV=production webpack --config webpack/config.prod.nojs.babel.js && rm build/static-* && rm build/app-*.js",
