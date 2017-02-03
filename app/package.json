@@ -29,7 +29,6 @@
     "chalk": "^1.1.3",
     "compression": "^1.6.1",
     "css-loader": "^0.26.1",
-    "doca-bootstrap-theme": "0.0.6",
     "eslint": "^3.13.1",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-loader": "^1.4.1",
