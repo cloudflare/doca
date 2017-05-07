@@ -57,33 +57,42 @@ cd doca/example
 doca init
 cd documentation
 npm install
+```
+
+**That's it!** Once installed, there are three ways to run the project:
+
+1.  The development mode where you can make quick changes in your schemas and see the results immediately because of webpack and mighty hot reloading:
+
+```
 npm start
 open http://localhost:8000
 ```
 
-**That's it!** This is the development mode where you can make quick changes in your schemas and see the results immediately because of webpack and mighty hot reloading.
-
-You can **build a static production ready app** with
+2.  A **static production-ready app**:
 
 ```
+npm install
 npm run build
 open build/index.html
 ```
 
-Or you can **build it without any JavaScript** with
+3.  A static app built **without any JavaScript**:
 
 ```
+npm install
 npm run build:nojs
 open build/index.html
 ```
 
-Do you need to **add more schemas** or change their order? Edit the file `/schema.js`.
+Do you need to **add more schemas** or change their order? Edit the file `schema.js`.
 
-Do you want to change the generic page title or make CURL examples nicer? Edit the file `/config.js`.
+Do you want to change the generic page title or make CURL examples nicer? Edit the file `config.js`.
 
 ## Themes
 
-**Themes are additional node modules**. Doca theme is just a set of React components and style sheets. At CloudFlare we use our own custom private CF theme. You can see it [here](https://api.cloudflare.com) in action. We have also open source a [theme based on Twitter Bootstrap](https://github.com/cloudflare/doca-bootstrap-theme). It is used as a default option for doca. [There](https://github.com/cloudflare/doca-bootstrap-theme) is also a detailed description about how to fork and **create your own theme**. It's pretty easy!
+**Themes are additional node modules**. Doca theme is just a set of React components and style sheets. At CloudFlare we use our own custom private CF theme. You can see it [here](https://api.cloudflare.com) in action. We have also open source a [theme based on Twitter Bootstrap](https://github.com/cloudflare/doca-bootstrap-theme). It is used as a default option for doca.
+
+The Bootstrap theme also contains [a detailed description about how to fork and **create your own theme**](https://github.com/cloudflare/doca-bootstrap-theme) . It's pretty easy!
 
 ### The list of doca themes:
 - [doca-bootstrap-theme](https://github.com/cloudflare/doca-bootstrap-theme)
