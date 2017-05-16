@@ -1,10 +1,23 @@
 # doca
 
-**Doca is a command-line tool that scaffolds API documentation (doca project)** based on your [JSON HyperSchemas](http://json-schema.org/). Doca bootstraps a full-fledged web app based on React and Webpack. Getting the final documentation is as easy as typing few commands or you can dive deeper and create your own completely different layout. **[Read the introductory blog post.](https://blog.cloudflare.com/cloudflares-json-powered-documentation-generator/)**
+**Doca is a command-line tool that scaffolds API documentation (doca project)** based on your [JSON Hyper-Schemas](http://json-schema.org/) (draft-04 supported, draft-07 support [forthcoming](ROADMAP.md)).
+
+Doca bootstraps a full-fledged web app based on React and Webpack. Getting the final documentation is as easy as typing few commands or you can dive deeper and create your own completely different layout. **[Read the introductory blog post.](https://blog.cloudflare.com/cloudflares-json-powered-documentation-generator/)**
+
+## Road Map
+
+The doca suite is under active development!  See our [Road Map](ROADMAP.md) for details.
 
 ## Overview
 
-Doca consists of a **command line tool** (this repository), **themes** (standalone node modules) and **webpack loaders** (background node modules you can mostly forget about). Here is a diagram:
+Doca consists of:
+* a **command line tool** (this repository)
+* **themes** (standalone node modules such as [doca-bootstrap-theme](https://github.com/cloudflare/doca-bootstrap-theme))
+* **webpack loaders** (background node modules you can mostly forget about)
+    * [json-schema-loader](https://github.com/cloudflare/json-schema-loader) loads schemas and tracks dependencies
+    * [json-schema-example-loader](https://github.com/cloudflare/json-schema-example-loader) converts schemas into the format expected by the themes
+
+Here is a diagram:
 
 <p align="center">
   <img src="doca.png" title="Doca project" alt="Doca project" width="80%" height="80%" />
@@ -43,10 +56,10 @@ This sets a different theme `newTheme` to the `project`. It has two steps:
 ### help
 
 ```
-doca help
+doca --help
 ```
 
-This gives you some description.
+This lists the commands and their syntax.
 
 
 ## Example usage
@@ -93,6 +106,8 @@ Do you want to change the generic page title or make CURL examples nicer? Edit t
 **Themes are additional node modules**. Doca theme is just a set of React components and style sheets. At CloudFlare we use our own custom private CF theme. You can see it [here](https://api.cloudflare.com) in action. We have also open source a [theme based on Twitter Bootstrap](https://github.com/cloudflare/doca-bootstrap-theme). It is used as a default option for doca.
 
 The Bootstrap theme also contains [a detailed description about how to fork and **create your own theme**](https://github.com/cloudflare/doca-bootstrap-theme) . It's pretty easy!
+
+Currently, themes include nearly all UI functionality.  We are working on allowing CSS-level themes while sharing the UI structure.  See our [road map](ROADMAP.md) for details.
 
 ### The list of doca themes:
 - [doca-bootstrap-theme](https://github.com/cloudflare/doca-bootstrap-theme)
