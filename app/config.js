@@ -2,26 +2,22 @@
 export default {
   title: 'Example API Documentation',
   // enhance your CURL examples by base url and request headers...
-  /*curl: {
-    baseUrl: 'https://api.example.com/client/v4',
+  curl: {
+    // The baseUrl typically ends in a / so that relative hrefs
+    // in your schemas can be joined with it in accordance
+    // with RFC 3986 relative URI reference resolution rules.
+    //
+    // By default, the generated app's src/client/introduction.js
+    // component displays this baseUrl in your documentation.
+    baseUrl: 'https://api.example.com/example/v1/',
     requestHeaders: {
+      // This is a JSON Schema which treats the HTTP request
+      // headers as if they were a JSON object instance.
       required: [
         'Content-Type',
-        'X-Auth-Email',
-        'X-Auth-Key',
       ],
       properties: {
-        'X-Auth-Email': {
-          type: 'string',
-          description: 'Your email',
-          example: 'user@example.com',
-        },
-        'X-Auth-Key': {
-          type: 'string',
-          length: 45,
-          description: 'Your API key',
-          example: 'c2547eb745079abc9320b638f5e225cf483cc5cfdda41',
-        },
+        // Include other headers here, such as for auth
         'Content-Type': {
           type: 'string',
           enum: [
@@ -32,5 +28,5 @@ export default {
         },
       },
     },
-  },*/
+  },
 };
