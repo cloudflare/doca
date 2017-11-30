@@ -53,6 +53,8 @@ This sets a different theme `newTheme` to the `project`. It has two steps:
 - renames all `doca-xxx-theme` references to `doca-newTheme-theme`
 **This can make destructive changes in your project.** Always use version control!
 
+**A note about package namespaces:** While non-namespaced themes can be referenced by their simple name (e.g. `newTheme` for `doca-newTheme-theme`), namespaced theme packages such as `@myorg/doca-abc-theme` must be passed as the full package name, including the namespace.
+
 ### help
 
 ```
