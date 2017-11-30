@@ -53,6 +53,8 @@ This sets a different theme `newTheme` to the `project`. It has two steps:
 - renames all `doca-xxx-theme` references to `doca-newTheme-theme`
 **This can make destructive changes in your project.** Always use version control!
 
+**A note about package scopes:** While non-scoped themes can be referenced by their simple name (e.g. `newTheme` for `doca-newTheme-theme`), scoped theme packages such as `@myscope/doca-abc-theme` must be passed as the full package name, including the scope.
+
 ### help
 
 ```
@@ -120,7 +122,9 @@ You can **install any theme** with the command
 doca theme THEME_NAME documentation
 ```
 
-You can use full name `doca-THEME_NAME-theme` or just shortcut `THEME_NAME`.
+For non-scoped theme packages, you can use full name `doca-THEME_NAME-theme` or just shortcut `THEME_NAME`.
+
+For scoped theme packages, you must use the full name `@myscope/doca-THEME_NAME-theme`
 
 
 
