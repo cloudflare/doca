@@ -1,0 +1,41 @@
+{
+  "id": "/wire_instruction",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Wire Instruction",
+  "description": "Wire Instructions",
+  "type": "object",
+  "definitions": {
+    "title": {
+      "type": "string",
+      "description": "Title Of WI",
+      "example": "Sample Title"
+    },
+    "amount": {
+      "type": "string",
+      "description": "money Amount",
+      "example": "300"
+    },
+    "memo": {
+      "type": "string",
+      "description": "Memo On WI",
+      "example": "Sampel Memo"
+    },
+    "agency_account_id": {
+      "type": "string",
+      "description": "Linked agency account id",
+      "example": "asd123"
+    }
+  },
+  "required": [
+    "title",
+    "amount",
+    "memo",
+    "agency_account_id"
+  ],
+  "properties": {
+    "title": {"$ref": "#/definitions/title"},
+    "amount": {"$ref": "#/definitions/amount"},
+    "memo": {"$ref": "#/definitions/memo"},
+    "agency_account_id": {"$ref": "#/definitions/agency_account_id"}
+  }
+}

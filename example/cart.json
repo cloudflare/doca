@@ -1,108 +1,118 @@
 {
-  "id": "/cart-item",
+  "id": "/v1/safewire",
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Cart Item",
-  "description": "Items in a user's cart",
+  "title": "SafeWire",
+  "description": "Safewire's Orders",
   "type": "object",
   "definitions": {
     "identifier": {
       "type": "integer",
-      "description": "The identifier of where the item is in the cart",
-      "example": 1
-    },
-    "quantity": {
-      "type": "number",
-      "description": "The amount of product that is desired",
-      "example": 2
+      "description": "The identifier of an order",
+      "example": "xaleg34"
     }
   },
   "properties": {
-    "ID": {
+    "id": {
       "$ref": "#/definitions/identifier"
     },
-    "product": {
-      "$ref": "./product.json"
+    "order": {
+      "$ref": "./order.json"
     },
-    "quantity": {
-      "$ref": "#/definitions/quantity"
+    "profile": {
+      "$ref": "./profile.json"
+    },
+    "wire_instruction": {
+      "$ref": "./wire_instruction.json"
+    },
+    "property": {
+      "$ref": "./property.json"
     }
   },
   "links": [
     {
-      "title": "Add product to cart",
-      "description": "Add a product to your cart",
+      "title": "Add An Order",
+      "description": "Add an order through SafeWire",
       "rel": "self",
-      "href": "/cart/{#/definitions/identifier}",
+      "href": "/v1/safewire",
       "method": "POST",
       "authentication_needed": true,
-      "required": ["product", "quantity"],
+      "required": ["order", "profile"],
       "schema": {
         "type": "object",
         "properties": {
-          "product": {
-            "$ref": "./product.json"
+          "order": {
+            "$ref": "./order.json"
           },
-          "quantity": {
-            "$ref": "#/definitions/quantity"
+          "property": {
+            "$ref": "./property.json"
+          },
+          "profile": {
+            "$ref": "./profile.json"
+          },
+          "wire_instruction": {
+            "$ref": "./wire_instruction.json"
           }
         }
       },
-      "targetSchema": {"rel": "self"}
-    },
-    {
-      "title": "All items in cart",
-      "description": "All items a user has added to their cart",
-      "rel": "instances",
-      "href": "/cart",
-      "method": "GET",
-      "authentication_needed": true,
       "targetSchema": {
         "type": "object",
         "properties": {
-          "items": {
-            "type": "array",
-            "items": {"rel": "self"}
+          "order": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/identifier"
+              }
+            }
           }
         }
       }
     },
     {
-      "title": "Cart item info",
-      "description": "Info about a specific item in the cart",
+      "title": "Order Info",
+      "description": "Retrieve info for a specific order",
       "rel": "self",
-      "href": "/cart/{#/definitions/identifier}",
+      "href": "/v1/safewire/{#/definitions/identifier}",
       "method": "GET",
       "authentication_needed": "yes",
-      "targetSchema": {"rel": "self"}
-    },
-    {
-      "title": "Update an item",
-      "description": "Update information about the item in your cart",
-      "rel": "self",
-      "href": "/cart/{#/definitions/identifier}",
-      "method": "PUT",
-      "authentication_needed": true,
-      "required": ["quantity"],
-      "schema": {
-        "type": "object",
-        "properties": {
-          "quantity": {
-            "$ref": "#/definitions/quantity"
-          }
-        }
-      },
-      "targetSchema": {"rel": "self"}
-    },
-    {
-      "title": "Remove a cart item",
-      "description": "Remove an item from your cart",
-      "rel": "self",
-      "href": "/cart/{#/definitions/identifier}",
-      "method": "DELETE",
       "targetSchema": {
         "type": "object",
         "properties": {
-          "ID": {"$ref": "#/definitions/identifier"}
+          "order": {
+            "type": "object",
+            "properties": {
+              "agency_order_id": {
+                "type": "string",
+                "description": "agency order id",
+                "example": "asd123"
+              },
+              "closing": {
+                "type": "date",
+                "description": "Closing date",
+                "example": "01-01-2018"
+              },
+              "closing": {
+                "type": "date",
+                "description": "Closing date",
+                "example": "01-01-2018"
+              },
+              "type": {
+                "type": "string",
+                "description": "type of order",
+                "example": "Purchase"
+              },
+              "notes": {
+                "type": "string",
+                "description": "Notes form the order",
+                "example": "01-01-2018"
+              },
+              "zip": {
+                "type": "string",
+                "description": "ZIP",
+                "example": "21312"
+              }
+            }
+          }
         }
       }
     }

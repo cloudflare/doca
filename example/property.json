@@ -1,0 +1,76 @@
+{
+  "id": "/property",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Property",
+  "description": "Property related to an order",
+  "type": "object",
+  "definitions": {
+    "pid": {
+      "type": "string",
+      "description": "pid of the property",
+      "example": "qwe123"
+    },
+    "street1": {
+      "type": "string",
+      "description": "Street of the property",
+      "example": "125 W 2nd Avenue"
+    },
+    "street2": {
+      "type": "string",
+      "description": "Suite of the property",
+      "example": "125 W 2nd Avenue"
+    },
+    "city": {
+      "type": "string",
+      "description": "City of the property",
+      "example": "Columbus"
+    },
+    "county": {
+      "type": "string",
+      "description": "County of the property",
+      "example": "Franklin"
+    },
+    "state": {
+      "type": "string",
+      "description": "State of the property",
+      "example": "OH"
+    },
+    "zip": {
+      "type": "string",
+      "description": "ZIP of the property",
+      "example": "12312"
+    },
+    "latitude": {
+      "type": "string",
+      "description": "Latitude of the property",
+      "example": "21312321321"
+    },
+    "longitude": {
+      "type": "string",
+      "description": "Longitude On WI",
+      "example": "-213123"
+    }
+  },
+  "required": [
+    "pid",
+    "street1",
+    "street2",
+    "city",
+    "county",
+    "state",
+    "zip",
+    "latitude",
+    "longitude"
+  ],
+  "properties": {
+    "pid": {"$ref": "#/definitions/pid"},
+    "street1": {"$ref": "#/definitions/street1"},
+    "street2": {"$ref": "#/definitions/street2"},
+    "city": {"$ref": "#/definitions/city"},
+    "county": {"$ref": "#/definitions/county"},
+    "state": {"$ref": "#/definitions/state"},
+    "zip": {"$ref": "#/definitions/zip"},
+    "latitude": {"$ref": "#/definitions/latitude"},
+    "longitude": {"$ref": "#/definitions/longitude"}
+  }
+}

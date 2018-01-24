@@ -1,0 +1,41 @@
+{
+  "id": "/profile",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Profile",
+  "description": "A Profile within safewire",
+  "type": "object",
+  "definitions": {
+    "email": {
+      "type": "string",
+      "description": "Email From Profile",
+      "example": "sample@sample.com"
+    },
+    "password": {
+      "type": "string",
+      "description": "Password",
+      "example": "smpwd"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "First Name",
+      "example": "John"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Last name",
+      "example": "Stark"
+    }
+  },
+  "required": [
+    "email",
+    "password",
+    "first_name",
+    "last_name"
+  ],
+  "properties": {
+    "email": {"$ref": "#/definitions/email"},
+    "password": {"$ref": "#/definitions/password"},
+    "first_name": {"$ref": "#/definitions/first_name"},
+    "last_name": {"$ref": "#/definitions/last_name"}
+  }
+}

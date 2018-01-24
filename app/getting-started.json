@@ -1,16 +1,10 @@
 {
   "id": "/getting/started",
-  "title": "Getting started",
+  "title": "Getting started 1",
   "hidden": true,
   "links": [
     {
       "title": "Endpoints"
-    },
-    {
-      "title": "Requests"
-    },
-    {
-      "title": "Responses"
     },
     {
       "title": "Resource IDs"

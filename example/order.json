@@ -1,0 +1,53 @@
+{
+  "id": "/order",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Order",
+  "description": "An order within safewire",
+  "type": "object",
+  "definitions": {
+    "type": {
+      "type": "type",
+      "description": "Type Of The Order",
+      "example": "Purchase"
+    },
+    "closing": {
+      "type": "date",
+      "description": "Date when the closing happens",
+      "example": "01-01-2018"
+    },
+    "agency_order_id": {
+      "type": "string",
+      "description": "Unique identifier for an agency",
+      "example": "kasj34"
+    },
+    "notes": {
+      "type": "type",
+      "description": "Notes related to not",
+      "example": "Sample Notes"
+    },
+    "zip": {
+      "type": "string",
+      "description": "ZIP",
+      "example": "21323"
+    },
+    "agency_id": {
+      "type": "string",
+      "description": "ID of the agency",
+      "example": "asd123"
+    }
+  },
+  "required": [
+    "type",
+    "agency_order_id",
+    "notes",
+    "zip",
+    "agency_id"
+  ],
+  "properties": {
+    "type": {"$ref": "#/definitions/type"},
+    "agency_order_id": {"$ref": "#/definitions/agency_order_id"},
+    "notes": {"$ref": "#/definitions/notes"},
+    "zip": {"$ref": "#/definitions/zip"},
+    "agency_id": {"$ref": "#/definitions/agency_id"}
+  }
+}
