@@ -1,108 +1,132 @@
 {
-  "id": "/cart-item",
+  "id": "/softpro/orders",
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Cart Item",
-  "description": "Items in a user's cart",
+  "title": "SoftPro Orders",
+  "description": "Create and read orders through SafeWire",
   "type": "object",
   "definitions": {
     "identifier": {
       "type": "integer",
-      "description": "The identifier of where the item is in the cart",
-      "example": 1
-    },
-    "quantity": {
-      "type": "number",
-      "description": "The amount of product that is desired",
-      "example": 2
+      "description": "The identifier of an order",
+      "example": "xaleg34"
     }
   },
   "properties": {
-    "ID": {
-      "$ref": "#/definitions/identifier"
+    "order": {
+      "$ref": "./order.json"
     },
-    "product": {
-      "$ref": "./product.json"
+    "party": {
+      "$ref": "./profile.json"
     },
-    "quantity": {
-      "$ref": "#/definitions/quantity"
+    "wire_instructions": {
+      "type": "array",
+      "items": {
+        "$ref": "./wire_instruction.json"
+      }
     }
   },
   "links": [
     {
-      "title": "Add product to cart",
-      "description": "Add a product to your cart",
+      "title": "Add An Order",
+      "description": "Add an order through SafeWire",
       "rel": "self",
-      "href": "/cart/{#/definitions/identifier}",
+      "href": "/softpro/orders",
       "method": "POST",
       "authentication_needed": true,
-      "required": ["product", "quantity"],
+      "required": ["order", "party", "wire_instructions"],
       "schema": {
         "type": "object",
         "properties": {
-          "product": {
-            "$ref": "./product.json"
+          "order": {
+            "$ref": "./order.json"
           },
-          "quantity": {
-            "$ref": "#/definitions/quantity"
+          "party": {
+            "$ref": "./profile.json"
+          },
+          "wire_instructions": {
+            "$ref": "./wire_instruction.json"
           }
         }
       },
-      "targetSchema": {"rel": "self"}
-    },
-    {
-      "title": "All items in cart",
-      "description": "All items a user has added to their cart",
-      "rel": "instances",
-      "href": "/cart",
-      "method": "GET",
-      "authentication_needed": true,
       "targetSchema": {
         "type": "object",
         "properties": {
-          "items": {
-            "type": "array",
-            "items": {"rel": "self"}
+          "order": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/identifier"
+              }
+            }
           }
         }
       }
     },
     {
-      "title": "Cart item info",
-      "description": "Info about a specific item in the cart",
+      "title": "Order Retrieve",
+      "description": "Retrieve info for a specific order",
       "rel": "self",
-      "href": "/cart/{#/definitions/identifier}",
+      "href": "/v1/safewire/{#/definitions/identifier}?transaction_id=XXXX-XXX-XXXXXX-XXXXXXX",
       "method": "GET",
       "authentication_needed": "yes",
-      "targetSchema": {"rel": "self"}
-    },
-    {
-      "title": "Update an item",
-      "description": "Update information about the item in your cart",
-      "rel": "self",
-      "href": "/cart/{#/definitions/identifier}",
-      "method": "PUT",
-      "authentication_needed": true,
-      "required": ["quantity"],
-      "schema": {
-        "type": "object",
-        "properties": {
-          "quantity": {
-            "$ref": "#/definitions/quantity"
-          }
-        }
-      },
-      "targetSchema": {"rel": "self"}
-    },
-    {
-      "title": "Remove a cart item",
-      "description": "Remove an item from your cart",
-      "rel": "self",
-      "href": "/cart/{#/definitions/identifier}",
-      "method": "DELETE",
       "targetSchema": {
         "type": "object",
         "properties": {
-          "ID": {"$ref": "#/definitions/identifier"}
+          "order": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique order indentifier",
+                "example": "asd123"
+              },
+              "notes": {
+                "type": "object",
+                "description": "Notes form the order",
+                "properties": {
+                  "activity_log": {
+                    "type": "array",
+                    "description": "Activity log for specific transaction",
+                    "items": {
+                      "properties": {
+                        "agency_profile": {
+                          "type": "object",
+                          "description": "Agency profile (user that belongs to that agency) that's related to an activity",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "Unique agency profile indentifier",
+                                "example": "asd123"
+                              },
+                              "type": {
+                                "type": "string",
+                                "description": "Type of an object",
+                                "example": "agency-profiles"
+                              }
+                            }
+                         },
+                        "datetime": {
+                          "type": "date",
+                          "description": "Date when the activity log happened",
+                          "example": "YYYY-MM-DD"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Description of what happened in a friendly format",
+                          "example": "SafeWire Verification Request delivered to Johny (Seller)"
+                        },
+                        "role": {
+                          "type": "string",
+                          "description": "Is party a buyer or seller",
+                          "example": "Seller"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

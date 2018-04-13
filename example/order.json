@@ -1,0 +1,56 @@
+{
+  "id": "/softpro/orders",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Order",
+  "description": "An order within safewire",
+  "type": "object",
+  "definitions": {
+    "transaction-type": {
+      "type": "string",
+      "description": "What type of a transaction is it (Purchase/Refinance)",
+      "example": "Purchase"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notes on the order",
+      "example": "I like Bob Burgers"
+    },
+    "closing-date": {
+      "type": "date",
+      "description": "Date when the actual closing happens",
+      "example": "YYYY-MM-DD"
+    },
+    "file-number": {
+      "type": "string",
+      "description": "Number of the filing that's internal to the agency",
+      "example": "WCT-1234-ZWINK"
+    },
+    "safewire-agency-id": {
+      "type": "string",
+      "description": "Unique identifier for an agency",
+      "example": "kasj34"
+    },
+    "property": {
+      "type": "array",
+      "items": {
+        "$ref": "./property.json"
+      }
+    }
+  },
+  "required": [
+    "transaction-type",
+    "notes",
+    "closing-date",
+    "file-number",
+    "safewire-agency-id",
+    "property"
+  ],
+  "properties": {
+    "transaction-type": {"$ref": "#/definitions/transaction-type"},
+    "notes": {"$ref": "#/definitions/notes"},
+    "closing-date": {"$ref": "#/definitions/closing-date"},
+    "file-number": {"$ref": "#/definitions/file-number"},
+    "safewire-agency-id": {"$ref": "#/definitions/safewire-agency-id"},
+    "property": {"$ref": "#/definitions/property"}
+  }
+}

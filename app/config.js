@@ -1,6 +1,6 @@
 // this is passed to json-schema-example-loader
 export default {
-  title: 'Example API Documentation',
+  title: 'SafeWire Docs',
   // enhance your CURL examples by base url and request headers...
   curl: {
     // The baseUrl typically ends in a / so that relative hrefs
@@ -9,7 +9,7 @@ export default {
     //
     // By default, the generated app's src/client/introduction.js
     // component displays this baseUrl in your documentation.
-    baseUrl: 'https://api.example.com/example/v1/',
+    baseUrl: 'https://api.safechain.io/v1/safewire',
     requestHeaders: {
       // This is a JSON Schema which treats the HTTP request
       // headers as if they were a JSON object instance.
