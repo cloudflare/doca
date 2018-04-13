@@ -14,13 +14,13 @@
       "type": "string",
       "description": "money Amount",
       "example": "300"
-    },
+      },
     "memo": {
       "type": "string",
       "description": "Memo On WI",
       "example": "Sampel Memo"
     },
-    "agency_account_id": {
+    "agency-account-id": {
       "type": "string",
       "description": "Linked agency account id",
       "example": "asd123"
@@ -36,6 +36,6 @@
     "title": {"$ref": "#/definitions/title"},
     "amount": {"$ref": "#/definitions/amount"},
     "memo": {"$ref": "#/definitions/memo"},
-    "agency_account_id": {"$ref": "#/definitions/agency_account_id"}
+    "agency-account-id": {"$ref": "#/definitions/agency-account-id"}
   }
 }

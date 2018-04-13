@@ -1,0 +1,86 @@
+{
+  "id": "/remit",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "SoftPro Remit",
+  "description": "A remit that will be sent to SoftPro once order is complete",
+  "type": "object",
+  "definitions": {
+    "transaction-id": {
+      "type": "string",
+      "description": "Transaction id provided by softpro originally.",
+      "example": "XXXXXXXXXXXX"
+    },
+    "user-name": {
+      "type": "string",
+      "description": "Username for accessing services in SoftPro",
+      "example": "awesome_username"
+    },
+    "password": {
+      "type": "string",
+      "description": "Password for accessing services in SoftPro",
+      "example": "pw123"
+    },
+    "notes": {
+      "type": "object",
+      "description": "Notes form the order",
+      "properties": {
+        "activity_log": {
+          "type": "array",
+          "description": "Activity log for specific transaction",
+          "items": {
+            "properties": {
+              "agency_profile": {
+                "type": "object",
+                "description": "Agency profile (user that belongs to that agency) that's related to an activity",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique agency profile indentifier",
+                      "example": "asd123"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Type of an object",
+                      "example": "agency-profiles"
+                    }
+                  }
+               },
+              "datetime": {
+                "type": "date",
+                "description": "Date when the activity log happened",
+                "example": "YYYY-MM-DD"
+              },
+              "message": {
+                "type": "string",
+                "description": "Description of what happened in a friendly format",
+                "example": "SafeWire Verification Request delivered to Johny (Seller)"
+              },
+              "role": {
+                "type": "string",
+                "description": "Is party a buyer or seller",
+                "example": "Seller"
+              }
+            }
+          }
+        }
+      }
+    },
+  },
+  "properties": {
+    "transaction-id": {"$ref": "#/definitions/transaction-id"},
+    "user-name": {"$ref": "#/definitions/user-name"},
+    "password": {"$ref": "#/definitions/password"},
+    "notes": {"$ref": "#/definitions/notes"},
+  },
+  "links": [
+    {
+      "title": "SoftPro Remit",
+      "description": "A remit that will be sent to SoftPro once order is complete",
+      "rel": "self",
+      "href": "softpro.com/awesome_url",
+      "method": "GET",
+      "authentication_needed": "yes",
+    }
+  ]
+
+}

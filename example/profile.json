@@ -5,15 +5,10 @@
   "description": "A Profile within safewire",
   "type": "object",
   "definitions": {
-    "email": {
+    "transaction-id": {
       "type": "string",
-      "description": "Email From Profile",
-      "example": "sample@sample.com"
-    },
-    "password": {
-      "type": "string",
-      "description": "Password",
-      "example": "smpwd"
+      "description": "Transaction ID sent by SoftPro for each party upon order submission",
+      "example": "0000-000-000000-0000001"
     },
     "first_name": {
       "type": "string",
@@ -24,18 +19,49 @@
       "type": "string",
       "description": "Last name",
       "example": "Stark"
-    }
+    },
+    "party-type": {
+      "type": "string",
+      "description": "What type of a party is it (Byer/Seller)",
+      "example": "Seller"
+    },
+    "legal-entity-name": {
+      "type": "string",
+      "description": "Name of the legal entity",
+      "example": "Burger King"
+    },
+    "legal-entity-type": {
+      "type": "string",
+      "description": "Type of the legal entity",
+      "example": "llc"
+    },
+    "mobile-phone": {
+      "type": "string",
+      "description": "Mobile phone",
+      "example": "+1614111111"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email From Profile",
+      "example": "sample@sample.com"
+    },
   },
   "required": [
-    "email",
-    "password",
+    "transaction-id",
     "first_name",
-    "last_name"
+    "last_name",
+    "party-type",
+    "mobile-phone",
+    "email",
   ],
   "properties": {
-    "email": {"$ref": "#/definitions/email"},
-    "password": {"$ref": "#/definitions/password"},
+    "transaction-id": {"$ref": "#/definitions/transaction-id"},
     "first_name": {"$ref": "#/definitions/first_name"},
-    "last_name": {"$ref": "#/definitions/last_name"}
+    "last_name": {"$ref": "#/definitions/last_name"},
+    "party-type": {"$ref": "#/definitions/last_name"},
+    "legal-entity-name": {"$ref": "#/definitions/legal-entity-name"},
+    "legal-entity-type": {"$ref": "#/definitions/legal-entity-type"},
+    "mobile-phone": {"$ref": "#/definitions/mobile-phone"},
+    "email": {"$ref": "#/definitions/email"},
   }
 }

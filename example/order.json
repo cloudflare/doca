@@ -1,53 +1,56 @@
 {
-  "id": "/order",
+  "id": "/softpro/orders",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Order",
   "description": "An order within safewire",
   "type": "object",
   "definitions": {
-    "type": {
-      "type": "type",
-      "description": "Type Of The Order",
+    "transaction-type": {
+      "type": "string",
+      "description": "What type of a transaction is it (Purchase/Refinance)",
       "example": "Purchase"
     },
-    "closing": {
-      "type": "date",
-      "description": "Date when the closing happens",
-      "example": "01-01-2018"
+    "notes": {
+      "type": "string",
+      "description": "Notes on the order",
+      "example": "I like Bob Burgers"
     },
-    "agency_order_id": {
+    "closing-date": {
+      "type": "date",
+      "description": "Date when the actual closing happens",
+      "example": "YYYY-MM-DD"
+    },
+    "file-number": {
+      "type": "string",
+      "description": "Number of the filing that's internal to the agency",
+      "example": "WCT-1234-ZWINK"
+    },
+    "safewire-agency-id": {
       "type": "string",
       "description": "Unique identifier for an agency",
       "example": "kasj34"
     },
-    "notes": {
-      "type": "type",
-      "description": "Notes related to not",
-      "example": "Sample Notes"
-    },
-    "zip": {
-      "type": "string",
-      "description": "ZIP",
-      "example": "21323"
-    },
-    "agency_id": {
-      "type": "string",
-      "description": "ID of the agency",
-      "example": "asd123"
+    "property": {
+      "type": "array",
+      "items": {
+        "$ref": "./property.json"
+      }
     }
   },
   "required": [
-    "type",
-    "agency_order_id",
+    "transaction-type",
     "notes",
-    "zip",
-    "agency_id"
+    "closing-date",
+    "file-number",
+    "safewire-agency-id",
+    "property"
   ],
   "properties": {
-    "type": {"$ref": "#/definitions/type"},
-    "agency_order_id": {"$ref": "#/definitions/agency_order_id"},
+    "transaction-type": {"$ref": "#/definitions/transaction-type"},
     "notes": {"$ref": "#/definitions/notes"},
-    "zip": {"$ref": "#/definitions/zip"},
-    "agency_id": {"$ref": "#/definitions/agency_id"}
+    "closing-date": {"$ref": "#/definitions/closing-date"},
+    "file-number": {"$ref": "#/definitions/file-number"},
+    "safewire-agency-id": {"$ref": "#/definitions/safewire-agency-id"},
+    "property": {"$ref": "#/definitions/property"}
   }
 }

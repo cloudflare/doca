@@ -1,0 +1,134 @@
+{
+  "id": "/authenticate",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Authentication",
+  "description": "Authenticate through SafeWire",
+  "type": "object",
+  "definitions": {
+    "username": {
+      "type": "string",
+      "description": "Username that was assigned through SafeWire",
+      "example": "nv@safechain.io"
+    },
+    "password": {
+      "type": "string",
+      "description": "Password user set through Safechain",
+      "example": "Suite A"
+    },
+    "address": {
+      "type": "object",
+      "description": "Address that gets validated upon login",
+      "properties": {
+        "street1": {
+          "type": "string",
+          "description": "Street of the property",
+          "example": "125 W 2nd Avenue"
+        },
+        "street2": {
+          "type": "string",
+          "description": "Suite of the property",
+          "example": "Suite A"
+        },
+        "city": {
+          "type": "string",
+          "description": "City of the property",
+          "example": "Columbus"
+        },
+        "county": {
+          "type": "string",
+          "description": "County of the property",
+          "example": "Franklin"
+        },
+        "state": {
+          "type": "string",
+          "description": "State of the property",
+          "example": "OH"
+        },
+        "zip": {
+          "type": "string",
+          "description": "ZIP of the property",
+          "example": "12312"
+        }
+      }
+    }
+  },
+  "properties": {
+    "username": {"$ref": "#/definitions/username"},
+    "password": {"$ref": "#/definitions/password"},
+    "address": {"$ref": "#/definitions/address"},
+  },
+  "links": [
+    {
+      "title": "Authenticate",
+      "description": "Authenticate through SafeWire",
+      "rel": "self",
+      "href": "/softpro/authenticate",
+      "method": "POST",
+      "authentication_needed": "yes",
+      "targetSchema": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "JWT token that is needed for authentication",
+            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo4NSwidXNlcm5hbWUiOiJuaWNrKzYzQHNhZmVjaGFpbi5pbyIsImV4cCI6MTUyMz"
+          },
+          "agencies": {
+            "type": "object",
+            "description": "Agencies that these user can manage. If it's one then it's an object, if it's multiple it's a collection of objects.",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique agency indentifier",
+                "example": "asd123"
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the agency",
+                "example": "Awesome Agency"
+              },
+            }
+          },
+          "agency_accounts": {
+            "type": "array",
+            "description": "List of agency accounts",
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Unique agency account indentifier",
+                  "example": "asd123"
+                },
+                "agency_id": {
+                  "type": "string",
+                  "description": "Unique agency indentifier",
+                  "example": "asd123"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title of the agency account",
+                  "example": "Awesome Name"
+                },
+                "bank_name": {
+                  "type": "string",
+                  "description": "Name of the bank",
+                  "example": "Chase"
+                },
+                "last_four": {
+                  "type": "string",
+                  "description": "Last 4 of the bank accounts",
+                  "example": "4444"
+                },
+                "bank_address": {
+                  "type": "string",
+                  "description": "Address of the bank",
+                  "example": "125 W 2nd Ave, Columbus, OH, 43201"
+                },
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

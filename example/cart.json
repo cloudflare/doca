@@ -1,8 +1,8 @@
 {
-  "id": "/v1/safewire",
+  "id": "/softpro/orders",
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "SafeWire",
-  "description": "Safewire's Orders",
+  "title": "SoftPro Orders",
+  "description": "Create and read orders through SafeWire",
   "type": "object",
   "definitions": {
     "identifier": {
@@ -12,20 +12,17 @@
     }
   },
   "properties": {
-    "id": {
-      "$ref": "#/definitions/identifier"
-    },
     "order": {
       "$ref": "./order.json"
     },
-    "profile": {
+    "party": {
       "$ref": "./profile.json"
     },
-    "wire_instruction": {
-      "$ref": "./wire_instruction.json"
-    },
-    "property": {
-      "$ref": "./property.json"
+    "wire_instructions": {
+      "type": "array",
+      "items": {
+        "$ref": "./wire_instruction.json"
+      }
     }
   },
   "links": [
@@ -33,23 +30,20 @@
       "title": "Add An Order",
       "description": "Add an order through SafeWire",
       "rel": "self",
-      "href": "/v1/safewire",
+      "href": "/softpro/orders",
       "method": "POST",
       "authentication_needed": true,
-      "required": ["order", "profile"],
+      "required": ["order", "party", "wire_instructions"],
       "schema": {
         "type": "object",
         "properties": {
           "order": {
             "$ref": "./order.json"
           },
-          "property": {
-            "$ref": "./property.json"
-          },
-          "profile": {
+          "party": {
             "$ref": "./profile.json"
           },
-          "wire_instruction": {
+          "wire_instructions": {
             "$ref": "./wire_instruction.json"
           }
         }
@@ -69,10 +63,10 @@
       }
     },
     {
-      "title": "Order Info",
+      "title": "Order Retrieve",
       "description": "Retrieve info for a specific order",
       "rel": "self",
-      "href": "/v1/safewire/{#/definitions/identifier}",
+      "href": "/v1/safewire/{#/definitions/identifier}?transaction_id=XXXX-XXX-XXXXXX-XXXXXXX",
       "method": "GET",
       "authentication_needed": "yes",
       "targetSchema": {
@@ -81,35 +75,55 @@
           "order": {
             "type": "object",
             "properties": {
-              "agency_order_id": {
+              "id": {
                 "type": "string",
-                "description": "agency order id",
+                "description": "Unique order indentifier",
                 "example": "asd123"
               },
-              "closing": {
-                "type": "date",
-                "description": "Closing date",
-                "example": "01-01-2018"
-              },
-              "closing": {
-                "type": "date",
-                "description": "Closing date",
-                "example": "01-01-2018"
-              },
-              "type": {
-                "type": "string",
-                "description": "type of order",
-                "example": "Purchase"
-              },
               "notes": {
-                "type": "string",
+                "type": "object",
                 "description": "Notes form the order",
-                "example": "01-01-2018"
-              },
-              "zip": {
-                "type": "string",
-                "description": "ZIP",
-                "example": "21312"
+                "properties": {
+                  "activity_log": {
+                    "type": "array",
+                    "description": "Activity log for specific transaction",
+                    "items": {
+                      "properties": {
+                        "agency_profile": {
+                          "type": "object",
+                          "description": "Agency profile (user that belongs to that agency) that's related to an activity",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "Unique agency profile indentifier",
+                                "example": "asd123"
+                              },
+                              "type": {
+                                "type": "string",
+                                "description": "Type of an object",
+                                "example": "agency-profiles"
+                              }
+                            }
+                         },
+                        "datetime": {
+                          "type": "date",
+                          "description": "Date when the activity log happened",
+                          "example": "YYYY-MM-DD"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Description of what happened in a friendly format",
+                          "example": "SafeWire Verification Request delivered to Johny (Seller)"
+                        },
+                        "role": {
+                          "type": "string",
+                          "description": "Is party a buyer or seller",
+                          "example": "Seller"
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
