@@ -1,4 +1,15 @@
-# doca
+# doca (DEPRECATED)
+
+This version of `doca` has been depreacted in favor of `@cloudflare/doca`, in the
+[json-schema-tools](https://github.com/cloudflare/json-schema-tools) repository.
+While `@cloudflare/doca` is conceptually the same, the back-end tools use a different
+format that retains compatibility with JSON Schema, so the theme requirements are different
+
+The new `@cloudflare/doca` does not yet have a fully functioning theme, so this package
+is still the produciton-ready one.  But we will be implementing feature requests on the new
+code, and moving most open issues to the new repo whenever it makes sense.
+
+------
 
 **Doca is a command-line tool that scaffolds API documentation (doca project)** based on your [JSON Hyper-Schemas](http://json-schema.org/) (draft-04 supported, draft-07 support [forthcoming](ROADMAP.md)).
 
