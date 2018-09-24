@@ -1,6 +1,6 @@
 # doca (DEPRECATED)
 
-This version of `doca` has been depreacted in favor of `@cloudflare/doca`, in the
+This version of `doca` has been deprecated in favor of `@cloudflare/doca`, in the
 [json-schema-tools](https://github.com/cloudflare/json-schema-tools) repository.
 While `@cloudflare/doca` is conceptually the same, the back-end tools use a different
 format that retains compatibility with JSON Schema, so the theme requirements are different
